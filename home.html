@@ -1,35 +1,134 @@
-<html>
-<head><title>投稿サイト</title></head>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホームページ</title>
+
+    <link rel=" stylesheet" href="styles.css" href="base.css" type="text/css">
+
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            background-image: url(2818x4564back2.png);
+            background-size: cover;
+            background-position: center top;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            color: #333;
+            text-align: center;
+            margin: 10px;/*余白をなくす*/
+            padding: 5px;
+            overflow-y: scroll;/*縦スクロールを有効*/
+            overflow-x:;/*横スクロール*/
+　　　　　　height: 50vh;
+　　　　　　
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            user-select: text;/* テキスト選択を禁止 */
+        }
+        img {
+            -webkit-user-drag: none; /* 画像のドラッグを禁止 */
+            user-drag: none;
+        }
+        header {
+            background-color: rgba(76,175,80,0.8);:#4CAF50;
+            padding: 20px;
+            color: white;
+            width: 100%;
+            height: 10%;
+            box-sizing: border-box;
+        }
+        nav {
+            margin: 20px 0;
+            min-height: 500vh;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+        main {
+            padding: 180px; /* 余白 */
+            position: none; /* 要素を固定 */
+            width: 0.15%; /* 要素の幅を指定 */
+            height: 50%; /* 要素の高さを指定 */
+        }
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: rgba(76,175,80,0.8);: #4CAF50;
+            color: white;
+            width: 100%;
+            height: 10%;
+            box-sizing: border-box;
+        }
+       
+
+    </style>
+
+      <script>
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+            alert('コピーは禁止されています。');
+        });
+
+        document.addEventListener('paste', function(event) {
+            event.preventDefault();
+            alert('貼り付けは禁止されています。');
+        });
+    </script>
+     <script>
+        /* 右クリックメニューを無効にするスクリプト */
+        document.addEventListener('contextmenu', function(event) {
+            if (event.target.tagName === 'IMG') {
+                event.preventDefault();
+                alert('この画像のコピーは禁止されています。');
+            }
+        });
+
+        /* ドラッグを禁止するスクリプト */
+        document.addEventListener('dragstart', function(event) {
+            if (event.target.tagName === 'IMG') {
+                event.preventDefault();
+            }
+        });
+    </script>
+  </head>
+
 <body>
-<body background="back5.jpg">
+    <header>
+        <h1>ようこそ！</h1>
+    <audio id="bgm" autoplay loop>
+    </header>
 
-<br>
-
-<p align="center">
-<table border background="back6.jpg">
-<tr><th bgcolor="white"><font size="5"><i>はてなブログ</i></font5></th><th><font color="white">一般の方の日記や様々な記事などを投稿</th></font5>
-<tr><th bgcolor="white"><font size="5"><i>小説家になろう</i></font5></th><th><font color="white">一般の方からセミプロまで創作・自伝等のあらゆるジャンルの<br>小説が投稿されてます<br>
-</th></font5></tr>
-</table>
-</p>
-
-<br><br><br>
-
-<p align="center">
-好みのジャンル<br>
-<input type="checkbox"name="book1">推理小説
-<input type="checkbox"name="book2">SF小説
-<input type="checkbox"name="book3">ファンタジー小説
-<input type="checkbox"name="book4">ホラー小説
-</p>
-
-<br><br><br>
-<p align="center">
-<a href="index.html"><img src="back9.jpg"><br>
-</a>
-</p>
+    <div class="contents">
+    <div class="header">
+    <nav>
+        <a href="#">ホーム</a>
+        <a href="index22.html">紹介</a>
+        <a href="#">項目</a>
+    </nav>
+    </div></div>
 
 
+    <main>
+        <h2>Welcome home, master.</h2>
+         <h3>ＦＡＳＴＰＡＧＥ</h3>
+    </main>
 
+      
+        <h4></h4>
+         <p>Internet</p>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p>&copy; うぇぶぺーじ</p>
+    </footer>
+   <script src="script.js"></script>
 </body>
 </html>
