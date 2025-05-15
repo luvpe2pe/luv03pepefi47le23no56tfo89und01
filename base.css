@@ -1,0 +1,43 @@
+
+
+  body {
+    font-size: 1rem;
+}
+@media (min-width: 7680px;) {
+    body {
+        font-size: 1.2rem;
+    }
+}
+@media (min-height: 4321px;) {
+    body {
+        font-size: 1.5rem;
+    }
+}
+
+<body background="">
+
+
+
+#audio-player {
+  width: 300px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: move;
+}
+
+audio {
+  width: 100%;
+}
+
+.resizable {
+  resize: both;
+  overflow: auto;
+}
