@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Spinning Cubes</title>
+  <style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: monospace;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#message-board {
+  display: block; /* 初期表示オンなら block、非表示なら none*/
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 300px;
+  max-height: 40vh;
+  overflow-y: auto;
+  background-color: #11111100;
+  border: 1px solid #444;
+  padding: 10px;
+  font-size: 12px;
+  color: white;
+  z-index: 1;/*チャットより背面に表示*/
+  border-radius: 6px;
+}
+
+#output {
+  white-space: pre;
+  line-height: 1;
+  text-align: center;
+  min-height: 120vh;
+}
+
+#chat-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #11111100;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 10;/*チャットが前面に表示されるように*/
+}
+
+#chat-log {
+  max-height: 200px;/*チャットログの高さ*/
+  overflow-y: auto;/*チャットログが多くなったときにスクロール可能に*/
+  margin-bottom: 5px;/*チャットログと入力欄の間のスペース*/
+  font-size: 12px;/*チャットログのフォントサイズ*/
+}
+
+.chat-message {
+  margin: 2px 0;
+  padding: 4px;
+  border-radius: 4px;
+  color: rgb(255, 255, 255);
+}
+
+.user1 { color: #ff6; }
+.user2 { color: #6f6; }
+.user3 { color: #6cf; }
+
+#clear-history-button {
+  display: none;
+  position: fixed;
+  bottom: 5px;
+  left: 300px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#back-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.8;
+  display: none;
+}
+
+#back-button:hover {
+  opacity: 1;
+  background-color: #666;
+}
+
+#toggle-board-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #44444400;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.85;
+  transition: background-color 0.3s, opacity 0.3s;
+
+  background: linear-gradient(to right, #222, #444);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  font-family: monospace;
+}
+
+#toggle-board-button:hover {
+  background-color: #666;
+  opacity: 1;
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="output"></div>
+  <div id="chat-container">
+    <div id="chat-log"></div>
+      <div id="message-board"></div>
+        <div id="chat-input">
+           <label for="chat-user" style="display:none;">ユーザー名</label>
+           <input type="text" id="chat-user" placeholder="ユーザー名" />
+           <label for="chat-text" style="display:none;">コメント入力</label>
+           <input type="text" id="chat-text" placeholder="コメントを入力..." />
+           <button onclick="sendMessage()">送信</button>
+          <button id="clear-history-button" onclick="clearChat()">履歴を消す</button>
+        </div>
+  </div>
+
+  <button id="toggle-board-button" onclick="toggleMessageBoard()">掲示板の表示切替</button>
+               <a href="item.html" id="back-button">戻る</a>
+
+
+  <script>
+      let currentUser = null;
+      const chatLog = document.getElementById("chat-log");
+      const chatText = document.getElementById("chat-text");
+      const userInput = document.getElementById("chat-user");
+
+      // let currentUser = null; // Duplicate declaration removed
+      const userColors = {};
+      const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+      
+      window.addEventListener("DOMContentLoaded", () => {
+          const welcome = document.createElement("div");
+          welcome.className = "chat-message welcome-message";
+          welcome.textContent = "💬 チャットへようこそ！コメントを入力してね";
+          welcome.style.color = getUserColor("system"); // 色系
+          chatLog.appendChild(welcome);
+
+          // 履歴の読み込み
+          renderChatHistory();
+          if (chatHistory.length > 0) {
+          currentUser = chatHistory[chatHistory.length - 1].user;
+          userInput.style.display = "none";
+
+          // 履歴があるときだけ表示("block")非表示("none")に切り替え
+          document.getElementById("clear-history-button").style.display = "none";
+           }
+        });
+
+        // const userColors = {}; // ユーザー名とカラーコードの対応表 (重複宣言を削除)
+
+          function getUserColor(user) {
+            if (!userColors[user]) {
+              // ランダムカラー生成（明るめ）
+              const r = Math.floor(128 + Math.random() * 127);
+              const g = Math.floor(128 + Math.random() * 127);
+              const b = Math.floor(128 + Math.random() * 127);
+              userColors[user] = `rgb(${r}, ${g}, ${b})`;
+            }
+            return userColors[user];
+          }
+
+          function sendMessage() {
+                const userInput = document.getElementById("chat-user");
+                if (!currentUser) {
+                  currentUser = userInput.value.trim();
+                if (!currentUser) return;
+                  // 初回送信後にユーザー名入力欄を非表示
+                  userInput.style.display = "none";
+                }
+
+                const text = chatText.value.trim();
+                if (!text || !currentUser) return;
+
+                const color = getUserColor(currentUser);
+                const message = document.createElement("div");
+                message.className = "chat-message";
+                message.textContent = `${currentUser}: ${text}`;
+                message.style.color = color;
+
+                chatLog.appendChild(message);
+                chatText.value = "";
+                chatLog.scrollTop = chatLog.scrollHeight;
+
+                // 掲示板にも追加
+                addToMessageBoard(currentUser, text, color);
+                  
+                // 履歴に追加して保存
+                chatHistory.push({ user: currentUser, text, color });
+                localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+              }
+
+              document.getElementById("back-button").addEventListener("click", () => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+              window.addEventListener("scroll", () => {
+              const btn = document.getElementById("back-button");
+              btn.style.display = window.scrollY > 100 ? "block" : "none";
+            });
+
+            function toggleMessageBoard() {
+                  const board = document.getElementById("message-board");
+                  const toggleBtn = document.getElementById("toggle-board-button");
+
+                  if (board.style.display === "none") {
+                  board.style.display = "block";
+                  toggleBtn.textContent = "掲示板を非表示";
+                } else {
+                  board.style.display = "none";
+                  toggleBtn.textContent = "掲示板を表示";
+                }
+              }
+
+            function renderChatHistory() {
+                  chatHistory.forEach(entry => {
+                  const message = document.createElement("div");
+                  message.className = "chat-message";
+                  message.textContent = `${entry.user}: ${entry.text}`;
+                  message.style.color = entry.color;
+                  chatLog.appendChild(message);
+                          // 掲示板にも復元
+                          addToMessageBoard(entry.user, entry.text, entry.color);
+
+                });
+                  chatLog.scrollTop = chatLog.scrollHeight;
+              }
+
+            function clearChat() {
+                  localStorage.removeItem("chatHistory");
+                  chatLog.innerHTML = "";
+                  currentUser = null;
+                  userInput.style.display = "block";
+
+                  // ボタンを非表示に戻す
+                  document.getElementById("message-board").innerHTML = ""; // 掲示板も初期化
+                }
+
+            function clearUserChat(targetUser) {
+                    // 履歴から対象ユーザーのメッセージを除外
+                    const filteredHistory = chatHistory.filter(entry => entry.user !== targetUser);
+                          chatHistory.length = 0;
+                          filteredHistory.forEach(entry => chatHistory.push(entry));
+                          // 履歴を更新して保存
+                          localStorage.setItem("chatHistory", JSON.stringify(filteredHistory));
+
+                          // 表示を更新
+                          chatLog.innerHTML = "";
+                          document.getElementById("message-board").innerHTML = "";
+
+                    filteredHistory.forEach(entry => {
+                      const message = document.createElement("div");
+                      message.className = "chat-message";
+                      message.textContent = `${entry.user}: ${entry.text}`;
+                      message.style.color = entry.color;
+                      chatLog.appendChild(message);
+
+                      addToMessageBoard(entry.user, entry.text, entry.color);
+                    });
+
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                  }
+
+                const userStats = {}; // ユーザー名ごとのステータス
+
+                function getUserStats(user) {
+                    if (!userStats[user]) {
+                      userStats[user] = {
+                        level: Math.floor(Math.random() * 10) + 1,
+                        hp: Math.floor(Math.random() * 50) + 50,
+                        mp: Math.floor(Math.random() * 30) + 20,
+                        posts: 0
+                      };
+                    }
+                    userStats[user].posts += 1;
+                    userStats[user].level = 1 + Math.floor(userStats[user].posts / 5); // 5回ごとにレベルアップ
+
+                    return userStats[user];
+                  }
+
+                  function addToMessageBoard(user, text, color) {
+                      const board = document.getElementById("message-board");
+                      const entry = document.createElement("div");
+
+                      const stats = getUserStats(user, text);
+                      const attack = text.length * (Math.floor(Math.random() * 3) + 1);
+                      const defense = estimateStrokeCount(text);
+
+
+                      entry.innerHTML = `
+                      <strong style="color:${color}">${user}</strong> 
+                      <span style="font-size:11px; color:#ccc">
+                      [Lv.${stats.level} HP:${stats.hp} MP:${stats.mp}]
+                      </span><br>
+                      <span style="color:${color}">${text}</span><br>
+                      <span style="font-size:11px; color:#aaa">
+                      🗡️ 攻撃力: ${attack}　🛡️ 防御力: ${defense}
+                      </span>
+                      <hr style="border:0; border-top:1px dashed #444;">
+                      `;
+
+                      board.appendChild(entry);
+                      board.scrollTop = board.scrollHeight;
+                    }
+
+                  function estimateStrokeCount(text) {
+                      // 漢字の画数を簡易的に 5〜15 でランダムに割り当て
+                      const kanjiRegex = /[\u4e00-\u9faf]/g;
+                      const kanjiList = text.match(kanjiRegex) || [];
+                      return kanjiList.reduce((sum) => sum + Math.floor(Math.random() * 11 + 5), 0);
+                    }
+
+
+    const width = 360, height = 90;
+    const buffer = new Array(width * height).fill('.');
+    const zBuffer = new Array(width * height).fill(0);
+    let A = 0, B = 0, C = 0;
+    const output = document.getElementById("output");
+
+    let A1 = 0, B1 = 0, C1 = 0;
+    let A2 = 0, B2 = 0, C2 = 0;
+    let A3 = 0, B3 = 0, C3 = 0;
+
+
+    function calculateX(i, j, k, A, B, C) {
+      return j * Math.sin(A) * Math.sin(B) * Math.cos(C) -
+             k * Math.cos(A) * Math.sin(B) * Math.cos(C) +
+             j * Math.cos(A) * Math.sin(C) +
+             k * Math.sin(A) * Math.sin(C) +
+             i * Math.cos(B) * Math.cos(C);
+    }
+
+    function calculateY(i, j, k, A, B, C) {
+      return j * Math.cos(A) * Math.cos(C) +
+             k * Math.sin(A) * Math.cos(C) -
+             j * Math.sin(A) * Math.sin(B) * Math.sin(C) +
+             k * Math.cos(A) * Math.sin(B) * Math.sin(C) -
+             i * Math.cos(B) * Math.sin(C);
+    }
+
+    function calculateZ(i, j, k, A, B, C) {
+      return k * Math.cos(A) * Math.cos(B) -
+             j * Math.sin(A) * Math.cos(B) +
+             i * Math.sin(B);
+    }
+
+    function calculateForSurface(i, j, k, ch, offset, A, B, C) {
+      const x = calculateX(i, j, k, A, B, C);
+      const y = calculateY(i, j, k, A, B, C);
+      const z = calculateZ(i, j, k, A, B, C) + 100;
+      const ooz = 1 / z;
+      const xp = Math.floor(width / 2 + offset + 40 * ooz * x * 2);
+      const yp = Math.floor(height / 2 + 40 * ooz * y);
+      const idx = xp + yp * width;
+      if (idx >= 0 && idx < width * height && ooz > zBuffer[idx]) {
+        zBuffer[idx] = ooz;
+        buffer[idx] = ch;
+      }
+    }
+
+    function drawCube1(chSet) {
+      const cubeWidth = 35;
+      const offset = -60;
+      for (let i = -cubeWidth; i < cubeWidth; i += 0.35) {
+        for (let j = -cubeWidth; j < cubeWidth; j += 0.35) {
+          calculateForSurface(i, j, -cubeWidth, chSet[0], offset, A1, B1, C1);
+          calculateForSurface(cubeWidth, j, i, chSet[1], offset, A1, B1, C1);
+          calculateForSurface(-cubeWidth, j, -i, chSet[2], offset, A1, B1, C1);
+          calculateForSurface(-i, j, cubeWidth, chSet[3], offset, A1, B1, C1);
+          calculateForSurface(i, -cubeWidth, -j, chSet[4], offset, A1, B1, C1);
+          calculateForSurface(i, cubeWidth, j, chSet[5], offset, A1, B1, C1);
+        }
+      }
+    }
+    function drawCube2(chSet) {
+      const cubeWidth = 15;
+      const offset = 60;
+      for (let i = -cubeWidth; i < cubeWidth; i += 0.25) {
+        for (let j = -cubeWidth; j < cubeWidth; j += 0.25) {
+          calculateForSurface(i, j, -cubeWidth, chSet[0], offset, A2, B2, C2);
+          calculateForSurface(cubeWidth, j, i, chSet[1], offset, A2, B2, C2);
+          calculateForSurface(-cubeWidth, j, -i, chSet[2], offset, A2, B2, C2);
+          calculateForSurface(-i, j, cubeWidth, chSet[3], offset, A2, B2, C2);
+          calculateForSurface(i, -cubeWidth, -j, chSet[4], offset, A2, B2, C2);
+          calculateForSurface(i, cubeWidth, j, chSet[5], offset, A2, B2, C2);
+        }
+      }
+    }
+    function drawCube3(chSet) {
+      const cubeWidth = 5;
+      const offset = 120;
+      for (let i = -cubeWidth; i < cubeWidth; i += 0.15) {
+        for (let j = -cubeWidth; j < cubeWidth; j += 0.15) {
+          calculateForSurface(i, j, -cubeWidth, chSet[0], offset, A3, B3, C3);
+          calculateForSurface(cubeWidth, j, i, chSet[1], offset, A3, B3, C3);
+          calculateForSurface(-cubeWidth, j, -i, chSet[2], offset, A3, B3, C3);
+          calculateForSurface(-i, j, cubeWidth, chSet[3], offset, A3, B3, C3);
+          calculateForSurface(i, -cubeWidth, -j, chSet[4], offset, A3, B3, C3);
+          calculateForSurface(i, cubeWidth, j, chSet[5], offset, A3, B3, C3);
+        }
+      }
+    }
+
+
+  function render() {
+    buffer.fill(' '); // 背景を完全に消去
+    zBuffer.fill(0);
+
+    // 各面に異なる文字を割り当て（濃→薄）
+    const cube1Chars = ['@', '#', '%', '&', '=', '-'];
+    const cube2Chars = ['$', '8', '*', '+', ';', ','];
+    const cube3Chars = ['~', 'o', 'x', '^', ':', '.'];
+
+    drawCube1(cube1Chars);
+    drawCube2(cube2Chars);
+    drawCube3(cube3Chars);
+
+    let outputStr = '';
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        outputStr += buffer[x + y * width];
+      }
+      outputStr += '\n';
+    }
+    output.textContent = outputStr;
+
+    // 回転速度調整（構造が崩れないように）
+    A1 += 0.05; B1 += 0.05; C1 += 0.01;
+    A2 += 0.03; B2 += 0.04; C2 += 0.02;
+    A3 += 0.02; B3 += 0.03; C3 += 0.04;
+  }
+    function loop() {
+        render();
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+
+  </script>
+</body>
+</html>

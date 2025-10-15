@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" 
+       content="width=device-width, initial-scale=1.0">
+  <title>リンク付き仮想空間ホームページ</title>
+  <link rel="stylesheet" href="css/audio.css">
+  <link rel="stylesheet" href="css/item.css">
+</head>
+<body>
+
+  <div id="space-container"></div>
+    <div class="cube" id="cube">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+
+  <!-- メインコンテンツ（背景上に表示） -->
+  <main id="page-content">
+
+    <h1>項目</h1>    
+      <span>📝</span><a href=
+             "https://chillinout2828.hatenablog.com/about">BLOG</a>
+    </div>
+    
+    <div class="link-row">
+      <span>📂</span><a href=
+             "comment.html">ぼやき</a>
+    </div>
+
+    <div class="link-row">
+      <span>🔙</span><a href=
+             "index.html">BACK</a>
+    </div>
+    
+  </main>
+
+
+
+<div class="player">
+  <audio id="audio"></audio>
+  <!-- 曲リスト -->
+  <ul id="playlist">
+    <li data-src="assets/bgm/Just The Two Of Us - Bill Withers.mp3">曲 1</li>
+    <li data-src="assets/bgm/Moon River Henry Mancinicover Earl Klugh.mp3">曲 2</li>
+    <li data-src="assets/bgm/Les barricades mysterieuses-Francoi.mp3">曲 3</li>
+  </ul>
+
+  <!-- コントローラー -->
+  <div class="controls">
+    <button id="prev">⏮️ 前へ</button>
+    <button id="playPause">▶️ 再生</button>
+    <button id="next">⏭️ 次へ</button>
+  </div>
+
+  <!-- 再生時間と進行バー -->
+  <div class="progress">
+    <span id="currentTime">0:00</span>
+    <input id="progressBar" type="range" min="0" value="0">
+    <span id="duration">0:00</span>
+  </div>
+
+  <!-- 音量調整 -->
+  <label for="volume">ボリューム:</label>
+  <input id="volume" type="range" min="0" max="1" step="0.01" value="0.1">
+</div>
+
+<script src="script/audio.js"></script>
+
+  <script src="script/item.js"></script>
+
+</body>
+</html>

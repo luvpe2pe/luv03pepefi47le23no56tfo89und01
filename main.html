@@ -1,0 +1,187 @@
+<!DOCTYPE html> <!-- HTML5の宣言 -->
+<html lang="ja"><!-- 言語設定 -->
+<head>
+    <meta charset="UTF-8"/><!-- 文字エンコーディング -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- レスポンシブデザイン -->
+    <meta name="description" content="HTMLとCSSの学習用ランディングページです。基本的な構造とスタイルを学びます。"/><!-- ページの説明 -->
+    <link rel="stylesheet" href="css/style.css" type="text/css"/><!-- スタイルシートのリンク -->
+
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/><!-- リセットCSSのリンク(ress.min.css(CDN)) -->
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet"><!--フォントのリンク-->
+
+    <title>HTMLCSS-LP</title>
+
+
+
+      <script>
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+            alert('コピーは禁止されています。');
+        });
+
+        document.addEventListener('paste', function(event) {
+            event.preventDefault();
+            alert('貼り付けは禁止されています。');
+        });
+    </script>
+     <script>
+        /* 右クリックメニューを無効にするスクリプト */
+        document.addEventListener('contextmenu', function(event) {
+            if (event.target.tagName === 'IMG') {
+                event.preventDefault();
+                alert('この画像のコピーは禁止されています。');
+            }
+        });
+
+        /* ドラッグを禁止するスクリプト */
+        document.addEventListener('dragstart', function(event) {
+            if (event.target.tagName === 'IMG') {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+
+
+</head>
+  <body>
+
+    <!-- Header -->
+     <header id="header"><!-- ヘッダーセクション -->
+        <h1 class="site-title"><!-- サイトタイトル -->
+            <a href="index.html"> やまた・たもう </a><!-- サイト名 -->
+        </h1>
+        <nav>
+            <ul>
+              <li><a href="#about" class="scroll">About</a></li>
+              <li><a href="#works" class="scroll">Activity</a></li>
+              <li><a href="#news" class="scroll">News</a></li>
+              <li><a href="#contact" class="scroll">Contact</a></li>
+                <li><a 
+                    href="https://x.com/Tamou_yamata" 
+                    target="_blank"
+
+                    rel="noopener noreferrer"><!-- ターゲットタブ・新しいタブで開くTwitterリンク -->
+                    
+                      <img src="assets/images/Sprite-newumbrella0031.png" alt="Twitter" class="icon"/></a>
+                </li>
+            </ul><!-- Twitterリンク -->
+        </nav>
+     </header>
+
+     <!--Main-->
+     <div id="main">
+       <picture>
+         <source media="(max-width: 600px;)" srcset="3840x2160back1.png">
+         <img src="assets/images/3840x2160back1.png" alt=""/>
+       </picture>
+     </div>
+
+     <!--about-->
+          <section id="about" class="wrapper">
+            <h2 class="sec-title"><!-- サイトタイトル -->
+              <a href="#" class="sec-title" class="scroll">About</a><!-- サイト名 -->
+            </h2>
+
+
+
+
+        <ul>
+            <li>YAMATA-TAMOU ＨＯＭＥＰＡＧＥ へようこそ</li>
+            <li>1980/XX/01<br>
+                青森生まれ、神奈川県出身 現在は岐阜</li>
+            <li><br>
+                </li>
+            
+              <div class="aa-wrapper">
+                <h3></h3>
+              <pre class="aa">
+
+
+              </pre>
+</li>
+        </ul>
+            <p></p>
+     </section>
+
+
+     <!--activity-->
+     <section id="works" class="wrapper">
+          <section id="about" class="wrapper">
+            <h2 class="sec-title"><!-- サイトタイトル -->
+              <a href="#" class="sec-title" class="scroll">Activity</a><!-- サイト名 -->
+            </h2>
+      <nav>
+        <ul>
+            <li><a href="#"><img src="assets/images/img-0007.png" alt="works1"></li>
+            <li><a href="#"><img src="assets/images/img-0008.png" alt="works2"></li>
+            <li><a href="#"><img src="assets/images/img-0013.png" alt="works3"></li>
+            <li><a href="#"><img src="assets/images/7680-4320back03.png" alt="works4"></li>
+            <li><a href="#"><img src="assets/images/img-0017.png" alt="works5"></li>
+            <li><a href="#"><img src="assets/images/img-0018.png" alt="works6"></li>
+         </ul>
+       </nav>
+     </section>
+
+     <!--news-->
+     <section id="news" class="wrapper">
+          <section id="about" class="wrapper">
+            <h2 class="sec-title"><!-- サイトタイトル -->
+              <a href="#" class="sec-title" class="scroll">News</a><!-- サイト名 -->
+            </h2>
+
+            <dl>
+                <dt></dt>
+                <dd></dd>
+                <dt></dt>
+                <dd></dd>
+                <dt>2025/01/05</dt>
+                <dd>ホームページ開設しました</dd>
+                <dt>2025/01/05</dt>
+                <dd>チャンネル登録お願いします</dd>
+                <dt>2025/01/05</dt>
+                <dd>高評価お願いします</dd>
+            </dl>
+     </section>
+
+     <!--contact-->
+     <section id="contact" class="wrapper">
+          <section id="about" class="wrapper">
+            <h2 class="sec-title"><!-- サイトタイトル -->
+              <a href="#" class="sec-title" class="scroll">Contact</a><!-- サイト名 -->
+            </h2>
+
+          <p>お問い合わせは以下のフォームから</p>
+            <form action="#" method="post">
+               <dl>
+                <dt><label for="name">お名前</label></dt>
+                <dd><input type="text" id="name"></dd>
+
+                <dt><label for="email">メールアドレス</label></dt>
+                <dd><input type="email" id="email"></dd>
+
+                <dt><label for="content">内容</label></dt>
+                <dd><textarea id="content" cols="30" rows=""></textarea></dd>
+               </dl>
+              <div class="button"><input type="submit" value="送信"/></div>
+            </form>
+     </section>
+
+     <script>
+      document.querySelectorAll('a.scroll').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
