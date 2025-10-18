@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <title>-----------00</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+ #controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+ #charset {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #0F0;
+  border: 1px solid #0F0;
+  font-size: 14px;
+  border-radius: 6px;
+  font-family: 'Noto Sans JP', monospace;
+}
+
+  #charset option {
+    background-color: black;
+    color: #0F0;
+  }
+
+  .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div id="controls">
+        <label for="charset" class="visually-hidden">文字種</label>
+           <select id="charset">
+            <option value="hiragana" selected>ひらがな</option>
+            <option value="katakana">カタカナ</option>
+            <option value="kanji1">漢字1</option>
+            <option value="kanji2">漢字2</option>
+            <option value="kanji3">漢字3</option>
+            <option value="latin">英字</option>
+            <option value="nums">数字</option>
+            <option value="all">全部</option>
+           </select>
+    </div>
+
+    <canvas id="matrix"></canvas>
+
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+
+        const hiragana = 'あいうえおにぎり';//'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょー';
+        const katakana = 'アイウエオニギリ';//'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴャュョー';
+        const kanji1 = '夢空海風雷火心愛龍神';//'夢空海風雷火心愛龍神';
+        const kanji2 = '鮨 鮟 鮪 鰄  鰯 鮇 鯏 鯎 鯣 鱛 魞 鮱 鰮 鰕 鱠 鮠 鰐 鮖 鯑 鰔 鰥 鰭 鱚 鮭 鯨 鯢 鰹 鮫 鰉 鱇 鮲 鯒  鮴 鯀 鯤 鮓 鰓 魳 鮨 鯔 鰤 鯱 鰍 鰌 鰆 鮹 鱆 鱶 鱏 鯐 鯖  鮮 鱓 鰺 鱒 鯛 鰈 鮎  魸 鯰 鰰 鱩 鰙 鰚 魬 鯡 鰾 鮒 鰒 鮃 鮸 魴 鮑 鰻 鰘 鯉 鱲 鱗 鱧 鰊 鱸';
+        const kanji3 = '弥次郎兵衛';
+        const latin = 'Alpha alpha Beta beta Gamma gamma Delta delta Epsilon varepsilon Zeta zeta Eta eta Theta theta Iota iota Kappa kappa Lambda lambda Mu mu Nu nu Xi xi Omicron omicron Pi pi Rho rho Sigma sigma Tau tau Upsilon upsilon Phi arphi Chi chi Psi psi Omega omega ';//'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!?@#$%^&*()-_=+[]{};:\'",.<>/\\|`~ ';
+        const nums = '0123';//'0123456789';
+
+        document.getElementById('charset').addEventListener('change', (e) => {
+            const value = e.target.value;
+            switch (value) {
+                case 'hiragana':
+                    alphabet = hiragana;
+                    break;
+                case 'katakana':
+                    alphabet = katakana;
+                    break;
+                case 'kanji1':
+                    alphabet = kanji1;
+                    break;
+                case 'kanji2':
+                    alphabet = kanji2;
+                    break;
+                case 'kanji3':
+                    alphabet = kanji3;
+                    break;
+                case 'latin':
+                    alphabet = latin;
+                    break;
+                case 'nums':
+                    alphabet = nums;
+                    break;
+                case 'all':
+                    alphabet = hiragana + katakana + kanji1 + kanji2 + kanji3 + latin + nums;
+                    break;
+            }
+        });
+
+        let alphabet = hiragana;//初期値をひらがなに設定
+
+        const fontSize = 16;
+        let columns = canvas.width / fontSize;
+        
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initializeDrops();
+            }
+        );
+
+        function initializeDrops() {
+                drops.length = 0;
+                columns = canvas.width / fontSize;
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = 1;
+                }
+            }
+            
+        const drops = [];
+        initializeDrops();
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = `${fontSize}px 'Noto Sans JP', sans-serif, monospace`;//フォントを日本語対応フォントに変更
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet[Math.floor(Math.random() * alphabet.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 60);
+    </script>
+
+</body>
+
+</html>
