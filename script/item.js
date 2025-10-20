@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
     cube.style.top = `${y}px`;
 
     const faceLinks = [
-      "https://www.youtube.com/@HanamomoWhatsnewtoday",
-      "https://www.youtube.com/@AcousticTrench",
-      "https://www.youtube.com/@SimonFlynn",
-      "https://www.youtube.com/@ongvit",
-      "https://www.youtube.com/@AirPanoVR",
-      "https://www.youtube.com/@erykatravel"
+      "https://www.youtube.com/",
+      "https://www.youtube.com/",
+      "https://www.youtube.com/",
+      "https://www.youtube.com/",
+      "https://www.youtube.com/",
+      "https://www.youtube.com/"
     ];
 
     const rotations = [
@@ -94,4 +94,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     spaceContainer.appendChild(cube);
   }
+
 });
