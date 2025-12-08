@@ -78,13 +78,13 @@
         canvas.height = window.innerHeight;
 
 
-        const hiragana = 'あいうえおにぎり';//'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょー';
-        const katakana = 'アイウエオニギリ';//'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴャュョー';
-        const kanji1 = '夢空海風雷火心愛龍神';//'夢空海風雷火心愛龍神';
+        const hiragana = 'あいうえおにぎり';
+        const katakana = 'アイウエオニギリ';
+        const kanji1 = '夢空海風雷火心愛龍神';
         const kanji2 = '鮨 鮟 鮪 鰄  鰯 鮇 鯏 鯎 鯣 鱛 魞 鮱 鰮 鰕 鱠 鮠 鰐 鮖 鯑 鰔 鰥 鰭 鱚 鮭 鯨 鯢 鰹 鮫 鰉 鱇 鮲 鯒  鮴 鯀 鯤 鮓 鰓 魳 鮨 鯔 鰤 鯱 鰍 鰌 鰆 鮹 鱆 鱶 鱏 鯐 鯖  鮮 鱓 鰺 鱒 鯛 鰈 鮎  魸 鯰 鰰 鱩 鰙 鰚 魬 鯡 鰾 鮒 鰒 鮃 鮸 魴 鮑 鰻 鰘 鯉 鱲 鱗 鱧 鰊 鱸';
         const kanji3 = '弥次郎兵衛';
-        const latin = 'Alpha alpha Beta beta Gamma gamma Delta delta Epsilon varepsilon Zeta zeta Eta eta Theta theta Iota iota Kappa kappa Lambda lambda Mu mu Nu nu Xi xi Omicron omicron Pi pi Rho rho Sigma sigma Tau tau Upsilon upsilon Phi arphi Chi chi Psi psi Omega omega ';//'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!?@#$%^&*()-_=+[]{};:\'",.<>/\\|`~ ';
-        const nums = '0123';//'0123456789';
+        const latin = 'Alpha alpha Beta beta Gamma gamma Delta delta Epsilon varepsilon Zeta zeta Eta eta Theta theta Iota iota Kappa kappa Lambda lambda Mu mu Nu nu Xi xi Omicron omicron Pi pi Rho rho Sigma sigma Tau tau Upsilon upsilon Phi arphi Chi chi Psi psi Omega omega ';
+        const nums = '0123';
 
         document.getElementById('charset').addEventListener('change', (e) => {
             const value = e.target.value;
@@ -116,7 +116,7 @@
             }
         });
 
-        let alphabet = hiragana;//初期値をひらがなに設定
+        let alphabet = hiragana;
 
         const fontSize = 16;
         let columns = canvas.width / fontSize;
@@ -145,7 +145,7 @@
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = '#0F0';
-            ctx.font = `${fontSize}px 'Noto Sans JP', sans-serif, monospace`;//フォントを日本語対応フォントに変更
+            ctx.font = `${fontSize}px 'Noto Sans JP', sans-serif, monospace`;
 
             for (let i = 0; i < drops.length; i++) {
                 const text = alphabet[Math.floor(Math.random() * alphabet.length)];
@@ -163,5 +163,6 @@
     </script>
 
 </body>
+
 
 </html>
