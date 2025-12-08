@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const sphere = document.getElementById("full-sphere");
-  const countLat = 18; // 緯度方向の分割数
-  const countLon = 36; // 経度方向の分割数
+  const countLat = 18; 
+  const countLon = 36; 
   const radius = 130;
 
   for (let i = 0; i <= countLat; i++) {
-    const theta = Math.PI * i / countLat; // 緯度角
+    const theta = Math.PI * i / countLat; 
 
     for (let j = 0; j < countLon; j++) {
-      const phi = 2 * Math.PI * j / countLon; // 経度角
+      const phi = 2 * Math.PI * j / countLon; 
 
       const x = radius * Math.sin(theta) * Math.cos(phi);
       const y = radius * Math.sin(theta) * Math.sin(phi);
@@ -20,4 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
       sphere.appendChild(face);
     }
   }
+
 });
