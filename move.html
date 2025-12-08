@@ -17,7 +17,7 @@
       alert('貼り付けは禁止されています。');
     });
 
-    /* 右クリックメニューを無効にするスクリプト */
+   
     document.addEventListener('contextmenu', function (event) {
       if (event.target.tagName === 'IMG') {
         event.preventDefault();
@@ -25,7 +25,7 @@
       }
     });
 
-    /* ドラッグを禁止するスクリプト */
+    
     document.addEventListener('dragstart', function (event) {
       if (event.target.tagName === 'IMG') {
         event.preventDefault();
@@ -73,7 +73,7 @@
                     <li>リスト3</li>
                   </ul>
             </li>
-            <!--表示外-->
+           
             <li>項目5
                   <ul>
                     <li>リスト1</li>
@@ -100,14 +100,14 @@
       </div>
     </div>
 
-        <!-- 戻るボタン -->
+       
 <div class="fixed-right">
   <a href="index.html" class="back-button">
     ← 戻る
   </a>
 </div>
 
-    <!-- 画像リンクボックス -->
+    
     <section class="animated-box">
      <div class="circle fixed-right floating-icon-container overlay">
       <a id="randomLink" href="#">
@@ -136,6 +136,7 @@
 </body>
 
 </html>
+
 
 
 
