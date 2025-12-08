@@ -15,7 +15,7 @@ body {
   position: absolute;
   overflow-y: auto;
   border: 1px solid #ccc;
-  cursor: move; /* ユーザーに「動かせる」と伝える */
+  cursor: move;
 }
 
 #comment-container {
@@ -101,4 +101,5 @@ button:hover {
     width: 90%;
     padding: 15px;
   }
+
 }
