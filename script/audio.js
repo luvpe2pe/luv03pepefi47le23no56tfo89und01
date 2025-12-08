@@ -67,7 +67,7 @@ audio.addEventListener('timeupdate', () => {
     
     if (!isNaN(audio.duration)) {
       const remaining = audio.duration - audio.currentTime;
-      durationElem.textContent = `${formatTime(remaining)}`;//textContent = `-${formatTime(remaining)}`;
+      durationElem.textContent = `${formatTime(remaining)}`;
     }
 });
 
@@ -132,4 +132,5 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.volume = event.target.value;
   });
 });
+
 
