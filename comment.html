@@ -185,19 +185,23 @@ body {
         </div>
   </div>
 
-  <button id="toggle-board-button" onclick="toggleMessageBoard()">掲示板の表示切替</button>
-               <a href="item.html" id="back-button">戻る</a>
+              <button id="toggle-board-button" onclick="toggleMessageBoard()">掲示板の表示切替</button>
+              <a href="item.html" id="back-button1">back</a>
+              <a href="chat.html" id="back-button2" style="display:none;">Room</a>
+              
+              <div id="message-board" style="display:none;">ここに掲示板内容</div>
 
 
   <script>
-      let currentUser = null;
-      const chatLog = document.getElementById("chat-log");
-      const chatText = document.getElementById("chat-text");
-      const userInput = document.getElementById("chat-user");
-
-  
-      const userColors = {};
-      const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+         let currentUser = null;
+          const chatLog = document.getElementById('chat-log');
+          const chatText = document.getElementById('chat-text');
+          const textInput = document.getElementById('text');
+          const userInput = document.getElementById('user');
+          const userColors = {};
+          const sendBtn = document.getElementById('send');
+    
+          const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
       
       window.addEventListener("DOMContentLoaded", () => {
           const welcome = document.createElement("div");
@@ -269,18 +273,57 @@ body {
               btn.style.display = window.scrollY > 100 ? "block" : "none";
             });
 
-            function toggleMessageBoard() {
-                  const board = document.getElementById("message-board");
-                  const toggleBtn = document.getElementById("toggle-board-button");
 
-                  if (board.style.display === "none") {
+    
+                function toggleMessageBoard() {
+                const board = document.getElementById("message-board");
+                const toggleBtn = document.getElementById("toggle-board-button");
+                const backBtn2 = document.getElementById("back-button2");
+
+                if (board.style.display === "none") {
                   board.style.display = "block";
-                  toggleBtn.textContent = "掲示板を非表示";
-                } else {
+                toggleBtn.textContent = "掲示板を非表示";
+              } else {
                   board.style.display = "none";
-                  toggleBtn.textContent = "掲示板を表示";
-                }
+                toggleBtn.textContent = "掲示板を表示";
               }
+           }
+
+                
+                window.addEventListener("load", () => {
+                const toggleBtn = document.getElementById("toggle-board-button");
+                const backBtn2 = document.getElementById("back-button2");
+
+             setTimeout(() => {
+                  toggleBtn.style.display = "none";
+                backBtn2.style.display = "inline-block";
+
+            
+             setTimeout(() => {
+                  backBtn2.style.display = "none";
+                  }, 5000);
+                 }, 3000);
+               });
+
+              
+                window.addEventListener("scroll", () => {
+                const toggleBtn = document.getElementById("toggle-board-button");
+                const backBtn2 = document.getElementById("back-button2");
+
+                if (window.scrollY > 100) {
+                  toggleBtn.style.display = "block";  
+                backBtn2.style.display = "none";    
+                } else {
+                  toggleBtn.style.display = "none";  
+                backBtn2.style.display = "inline-block"; 
+            
+                  setTimeout(() => {
+                    backBtn2.style.display = "none";
+                  }, 5000);
+                }
+                });
+
+    
 
             function renderChatHistory() {
                   chatHistory.forEach(entry => {
@@ -509,6 +552,7 @@ body {
 </body>
 
 </html>
+
 
 
 
