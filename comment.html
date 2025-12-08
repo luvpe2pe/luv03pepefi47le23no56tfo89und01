@@ -84,7 +84,7 @@ body {
   z-index: 100;
 }
 
-#back-button {
+#back-button1 {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -100,9 +100,36 @@ body {
   display: none;
 }
 
-#back-button:hover {
+#back-button1:hover {
   opacity: 1;
   background-color: #666;
+}
+
+#back-button2 {
+  position: fixed;
+  display: none;
+  top: 10px;
+  right: 20px;
+  background: linear-gradient(to right, #222, #444);
+  color: white;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.85;
+  transition: background-color 0.3s, opacity 0.3s;
+  font-family: monospace;
+  text-decoration: none; 
+}
+
+#back-button2.show {
+  opacity: 1;
+}
+
+#back-button2:hover {
+  background-color: #666;
+  opacity: 1; 
 }
 
 #toggle-board-button {
@@ -119,7 +146,6 @@ body {
   z-index: 100;
   opacity: 0.85;
   transition: background-color 0.3s, opacity 0.3s;
-
   background: linear-gradient(to right, #222, #444);
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
   font-family: monospace;
@@ -264,12 +290,12 @@ body {
                 localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
               }
 
-              document.getElementById("back-button").addEventListener("click", () => {
+              document.getElementById("back-button1").addEventListener("click", () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             });
 
               window.addEventListener("scroll", () => {
-              const btn = document.getElementById("back-button");
+              const btn = document.getElementById("back-button1");
               btn.style.display = window.scrollY > 100 ? "block" : "none";
             });
 
@@ -552,6 +578,7 @@ body {
 </body>
 
 </html>
+
 
 
 
