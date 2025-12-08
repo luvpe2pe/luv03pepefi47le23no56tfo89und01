@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const point = document.createElement("div");
     point.className = "point";
 
-    const theta = Math.acos(-1 + (2 * i) / pointCount); // 緯度
-    const phi = Math.sqrt(pointCount * Math.PI) * theta; // 経度っぽい分布
+    const theta = Math.acos(-1 + (2 * i) / pointCount); 
+    const phi = Math.sqrt(pointCount * Math.PI) * theta; 
 
     const x = radius * Math.sin(theta) * Math.cos(phi);
     const y = radius * Math.sin(theta) * Math.sin(phi);
@@ -17,4 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
     point.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
     sphere.appendChild(point);
   }
+
 });
