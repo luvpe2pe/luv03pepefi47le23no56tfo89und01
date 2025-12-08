@@ -1,29 +1,29 @@
 html {
-    font-size: 100%; /* 1rem = 16px */
+    font-size: 100%;
     scroll-behavior: smooth;
 }
 
 body {
-    background-color: rgba(150, 180, 160, 0.555);/* 背景色 */
+    background-color: rgba(150, 180, 160, 0.555);
     font-family: "M PLUS Rounded 1c",sans-serif;
 }
 
 a {
-    text-decoration: none;/* リンクの下線を削除します */
+    text-decoration: none;
 }
 
 p {
-    font-size: 1.3rem; /* 1.3rem = 20.8px */
+    font-size: 1.3rem;
 }
 
-/* 画像のスタイル */
+
 img {
-    max-width: 100%;/* 画像のレスポンシブ性を保証する */
+    max-width: 100%;
 }
 
 li {
-    list-style: none;/* リストのデフォルトのスタイルを削除 */
-    font-size: 1.2rem; /* 1.2rem = 19.2px */
+    list-style: none;
+    font-size: 1.2rem;
 }
 
 .aa {
@@ -47,96 +47,96 @@ li {
 }
 
 
-/* ヘッダータイトル styles */
+
 .site-title {
-    line-height: 1.2;/* タイトルの行間を1.2に設定 */
-    font-weight: 600;/* タイトルのフォントウェイトを600に設定 */
-    font-size: 2.4rem;/* 2.4rem = 38.4px */
+    line-height: 1.2;
+    font-weight: 600;
+    font-size: 2.4rem;
 }    
 
 .site-title a {
-    color: rgba(185, 125, 125, 0.925);/* タイトルリンクの色 */
-    display: block;/* ブロック要素として表示 */
-    transition: all 0.3s ease;/* ホバー時のトランジション効果 */
+    color: rgba(185, 125, 125, 0.925);
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .site-title a:hover {
-    opacity: 1.8;/* ホバー時の透明度を1.8に設定 */
-    color: rgba(240, 45, 45, 0.815);/* ホバー時のタイトルリンクの色 */
+    opacity: 1.8;
+    color: rgba(240, 45, 45, 0.815);
 }
 
 
-/* Header styles */
+
 #header {
-    max-width: 960px;/* 960px = 60rem */
-    display: flex;/* レイアウト用のフレックスボックス */
-    align-items: center;/* アイテムを垂直に中央揃え */
-    justify-content: space-between;/* アイテムを左右に配置 */
-    margin: 0 auto;/* 自動マージンで中央揃え */
-    padding: 0 4%;/* 左右のパディングを4%に設定 */
-    height: 170px;/* ヘッダーの高さを170pxに設定 */
+    max-width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 4%;
+    height: 170px;
 }
 
-/* Header title styles */
+
 #header ul {
-    display: flex;/* フレックスボックスでタイトルを配置 */
-    padding: 10px 0;/* 上下のパディングを10pxに設定 */
-    align-items: center;/* アイテムを垂直に中央揃え */
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
 }
 
 #header ul li {
-    font-size: 0.9rem;/* 0.9rem = 14.4px */
-    margin-left: 30px;/* 左側のマージンを30pxに設定 */
+    font-size: 0.9rem;
+    margin-left: 30px;
 }
 
 #header ul li a {
-    color: rgb(115, 160, 160);/* リンクの色 */
-    transition: all 0.3s ease;/* ホバー時のトランジション効果 */
+    color: rgb(115, 160, 160);
+    transition: all 0.3s ease;
 }
 
 #header ul li a:hover {
-    opacity: 0.9;/* ホバー時の透明度を設定 */
-    color: rgba(15, 100, 180, 0.925);/* ホバー時のリンクの色 */
+    opacity: 0.9;
+    color: rgba(15, 100, 180, 0.925);
 }
 
 #header li img.icon {
-    width: 30px;/* Twitterアイコンの幅を30pxに設定 */
-    cursor: pointer;/* カーソルをポインターに変更 */
-    transition: transform 0.3s ease-in-out;/* ホバー時のトランジション効果 */
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 #header li img.icon:hover {
-    transform: scale(1.35);/* ホバー時に少し拡大 */
+    transform: scale(1.35);
 }
 
 
 
-/* Aboutタイトル */
+
 .sec-title {
-    margin: 30px auto;/* タイトルの上下のマージンを30pxに設定 */
-    width: 70px;/* タイトルの幅を設定 */
-    color: rgba(210, 160, 90, 0.925);/* タイトルの色 */
+    margin: 30px auto;
+    width: 70px;
+    color: rgba(210, 160, 90, 0.925);
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 65px;
-    cursor: pointer;/* カーソルをポインターに変更 */
-    transition: color 0.3s ease;/* 色変化にアニメーション */
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* ホバー効果 */
+
 .sec-title:hover {
-    color: #cc7400;/* ホバー時に色変更 */
+    color: #cc7400;
 }
 
-/* about欄 */
+
 .wrapper {
-    font-size: 0.9rem; /* 0.9rem = 14.4px */
+    font-size: 0.9rem;
     max-width: 960px;
     margin: 0 auto 130px auto;
     padding: 0 4%;
 }
 
-/* about内構造 */
+
 #about ul {
     margin-bottom: 30px;
 }
@@ -150,34 +150,34 @@ li {
 }
 
 
-/* works */
-#works ul{/* 作品リストのスタイル */
-    display: flex;/* フレックスボックスで配置 */
-    flex-wrap: wrap;/* アイテムを折り返す */
-    justify-content: space-between;/* アイテムを均等に配置 */
-    margin-bottom: 50px;/* 下のマージンを50pxに設定 */
+
+#works ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 50px;
 }
 
-#works ul li {/* 各作品のスタイル */
+#works ul li {
     width: 31%;
     margin-bottom: 23px;
 }
 
-#works ul li img {/* 画像のスタイル */
+#works ul li img {
     width: 500px;
     height: auto;
-    object-fit: cover;/* 必要に応じて画像の切り取り方を調整 */
-    cursor: pointer;/* カーソルをポインターに変更 */
-    transition: all 0.3s;/* ホバー時のトランジション効果 */
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-#works ul li img:hover {/* ホバー時のスタイル */
-    transform: scale(1.1, 1.1);/* ホバー時に1.2倍に拡大 */
-    opacity: 0.7;/* ホバー時に透明度を0.7に設定 */
+#works ul li img:hover {
+    transform: scale(1.1, 1.1);
+    opacity: 0.7;
 }
 
 
-/* news */
+
 #news dl {
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +198,7 @@ li {
 }
 
 
-/* contact*/
+
 #contact p {
     text-align: center;
     margin-bottom: 20px;
@@ -227,7 +227,7 @@ li {
 }
 
 #contact dd textarea {
-    height: 10rem;/* コンタクト内容欄の幅 */
+    height: 10rem;
 }
 
 #contact .button {
@@ -251,7 +251,7 @@ li {
 
 
 
-/* main PC用のスタイル */
+
 #main{
     margin-bottom: 80px;
 }
@@ -264,32 +264,32 @@ li {
 
 
 section {
-  scroll-margin-top: 0; /* ヘッダーの高さ分だけ余白を確保 */
+  scroll-margin-top: 0; 
 }
 
 
 
-/* sp スマホ用のスタイル */
+
 @media screen and (max-width: 600px) {
     .site-title {
-        margin-top: 20px;/* タイトルの上のマージンを20pxに設定 */
+        margin-top: 20px;
     }
-    /* スマホ用のヘッダーのスタイル */
+
     #header {
-        flex-direction: column;/* ヘッダーのアイテムを縦に配置 */
-        height: auto;/* 高さを自動に設定 */
-        line-height: 40px;/* 行間を40pxに設定 */
-        margin-top: 20px;/* 上のマージンを20pxに設定 */
+        flex-direction: column;
+        height: auto;
+        line-height: 40px;
+        margin-top: 20px;
     }
     #header li {
-        font-size: 0.8rem; /* 0.8rem = 12.8px */
-        margin-left: 20px;/* 左側のマージンを20pxに設定 */
+        font-size: 0.8rem;
+        margin-left: 20px;
     }
     #header li img.icon {
         width: 20px;
         margin-top: 15px;
     }
-    /* works */
+
     #works ul {
         flex-direction: column;
     }
@@ -298,7 +298,7 @@ section {
         width: 100%;
     }
 
-    /* news */
+
     #news dl {
         flex-direction: column;
     }
@@ -314,7 +314,7 @@ section {
         padding-top: 0;
     }
 
-    /* contact */
+
     #contact dl {
         flex-direction: column;
     }
@@ -327,4 +327,5 @@ section {
     #contact dd {
         width: 100%;
     }
+
 }
