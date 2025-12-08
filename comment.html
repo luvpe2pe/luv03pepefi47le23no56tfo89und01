@@ -18,7 +18,7 @@ body {
 }
 
 #message-board {
-  display: block; /* 初期表示オンなら block、非表示なら none*/
+  display: block; 
   position: fixed;
   top: 10px;
   left: 10px;
@@ -30,7 +30,7 @@ body {
   padding: 10px;
   font-size: 12px;
   color: white;
-  z-index: 1;/*チャットより背面に表示*/
+  z-index: 1;
   border-radius: 6px;
 }
 
@@ -49,14 +49,14 @@ body {
   background: #11111100;
   padding: 10px;
   box-sizing: border-box;
-  z-index: 10;/*チャットが前面に表示されるように*/
+  z-index: 10;
 }
 
 #chat-log {
-  max-height: 200px;/*チャットログの高さ*/
-  overflow-y: auto;/*チャットログが多くなったときにスクロール可能に*/
-  margin-bottom: 5px;/*チャットログと入力欄の間のスペース*/
-  font-size: 12px;/*チャットログのフォントサイズ*/
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 5px;
+  font-size: 12px;
 }
 
 .chat-message {
@@ -195,7 +195,7 @@ body {
       const chatText = document.getElementById("chat-text");
       const userInput = document.getElementById("chat-user");
 
-      // let currentUser = null; // Duplicate declaration removed
+  
       const userColors = {};
       const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
       
@@ -203,25 +203,25 @@ body {
           const welcome = document.createElement("div");
           welcome.className = "chat-message welcome-message";
           welcome.textContent = "💬 ぼやきルームです";
-          welcome.style.color = getUserColor("system"); // 色系
+          welcome.style.color = getUserColor("system"); 
           chatLog.appendChild(welcome);
 
-          // 履歴の読み込み
+          
           renderChatHistory();
           if (chatHistory.length > 0) {
           currentUser = chatHistory[chatHistory.length - 1].user;
           userInput.style.display = "none";
 
-          // 履歴があるときだけ表示("block")非表示("none")に切り替え
+          
           document.getElementById("clear-history-button").style.display = "none";
            }
         });
 
-        // const userColors = {}; // ユーザー名とカラーコードの対応表 (重複宣言を削除)
+        
 
           function getUserColor(user) {
             if (!userColors[user]) {
-              // ランダムカラー生成（明るめ）
+              
               const r = Math.floor(128 + Math.random() * 127);
               const g = Math.floor(128 + Math.random() * 127);
               const b = Math.floor(128 + Math.random() * 127);
@@ -235,7 +235,7 @@ body {
                 if (!currentUser) {
                   currentUser = userInput.value.trim();
                 if (!currentUser) return;
-                  // 初回送信後にユーザー名入力欄を非表示
+                  
                   userInput.style.display = "none";
                 }
 
@@ -252,10 +252,10 @@ body {
                 chatText.value = "";
                 chatLog.scrollTop = chatLog.scrollHeight;
 
-                // 掲示板にも追加
+                
                 addToMessageBoard(currentUser, text, color);
                   
-                // 履歴に追加して保存
+                
                 chatHistory.push({ user: currentUser, text, color });
                 localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
               }
@@ -289,7 +289,7 @@ body {
                   message.textContent = `${entry.user}: ${entry.text}`;
                   message.style.color = entry.color;
                   chatLog.appendChild(message);
-                          // 掲示板にも復元
+                         
                           addToMessageBoard(entry.user, entry.text, entry.color);
 
                 });
@@ -302,19 +302,19 @@ body {
                   currentUser = null;
                   userInput.style.display = "block";
 
-                  // ボタンを非表示に戻す
-                  document.getElementById("message-board").innerHTML = ""; // 掲示板も初期化
+                
+                  document.getElementById("message-board").innerHTML = ""; 
                 }
 
             function clearUserChat(targetUser) {
-                    // 履歴から対象ユーザーのメッセージを除外
+                 
                     const filteredHistory = chatHistory.filter(entry => entry.user !== targetUser);
                           chatHistory.length = 0;
                           filteredHistory.forEach(entry => chatHistory.push(entry));
-                          // 履歴を更新して保存
+                     
                           localStorage.setItem("chatHistory", JSON.stringify(filteredHistory));
 
-                          // 表示を更新
+              
                           chatLog.innerHTML = "";
                           document.getElementById("message-board").innerHTML = "";
 
@@ -331,7 +331,7 @@ body {
                     chatLog.scrollTop = chatLog.scrollHeight;
                   }
 
-                const userStats = {}; // ユーザー名ごとのステータス
+                const userStats = {}; 
 
                 function getUserStats(user) {
                     if (!userStats[user]) {
@@ -343,7 +343,7 @@ body {
                       };
                     }
                     userStats[user].posts += 1;
-                    userStats[user].level = 1 + Math.floor(userStats[user].posts / 5); // 5回ごとにレベルアップ
+                    userStats[user].level = 1 + Math.floor(userStats[user].posts / 5); 
 
                     return userStats[user];
                   }
@@ -374,7 +374,7 @@ body {
                     }
 
                   function estimateStrokeCount(text) {
-                      // 漢字の画数を簡易的に 5〜15 でランダムに割り当て
+                     
                       const kanjiRegex = /[\u4e00-\u9faf]/g;
                       const kanjiList = text.match(kanjiRegex) || [];
                       return kanjiList.reduce((sum) => sum + Math.floor(Math.random() * 11 + 5), 0);
@@ -473,10 +473,10 @@ body {
 
 
   function render() {
-    buffer.fill(' '); // 背景を完全に消去
+    buffer.fill(' '); 
     zBuffer.fill(0);
 
-    // 各面に異なる文字を割り当て（濃→薄）
+    
     const cube1Chars = ['@', '#', '%', '&', '=', '-'];
     const cube2Chars = ['$', '8', '*', '+', ';', ','];
     const cube3Chars = ['~', 'o', 'x', '^', ':', '.'];
@@ -494,7 +494,7 @@ body {
     }
     output.textContent = outputStr;
 
-    // 回転速度調整（構造が崩れないように）
+  
     A1 += 0.05; B1 += 0.05; C1 += 0.01;
     A2 += 0.03; B2 += 0.04; C2 += 0.02;
     A3 += 0.02; B3 += 0.03; C3 += 0.04;
@@ -509,6 +509,7 @@ body {
 </body>
 
 </html>
+
 
 
 
