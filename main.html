@@ -1,14 +1,14 @@
-<!DOCTYPE html> <!-- HTML5の宣言 -->
-<html lang="ja"><!-- 言語設定 -->
+<!DOCTYPE html> 
+<html lang="ja">
 <head>
-    <meta charset="UTF-8"/><!-- 文字エンコーディング -->
+    <meta charset="UTF-8"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/><!-- レスポンシブデザイン -->
-    <meta name="description" content="HTMLとCSSの学習用ランディングページです。基本的な構造とスタイルを学びます。"/><!-- ページの説明 -->
-    <link rel="stylesheet" href="css/style.css" type="text/css"/><!-- スタイルシートのリンク -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="HTMLとCSSの学習用ランディングページです。基本的な構造とスタイルを学びます。"/>
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
 
-    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/><!-- リセットCSSのリンク(ress.min.css(CDN)) -->
-    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet"><!--フォントのリンク-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
 
     <title>HTMLCSS-LP</title>
 
@@ -26,7 +26,7 @@
         });
     </script>
      <script>
-        /* 右クリックメニューを無効にするスクリプト */
+       
         document.addEventListener('contextmenu', function(event) {
             if (event.target.tagName === 'IMG') {
                 event.preventDefault();
@@ -34,7 +34,7 @@
             }
         });
 
-        /* ドラッグを禁止するスクリプト */
+       
         document.addEventListener('dragstart', function(event) {
             if (event.target.tagName === 'IMG') {
                 event.preventDefault();
@@ -47,10 +47,10 @@
 </head>
   <body>
 
-    <!-- Header -->
-     <header id="header"><!-- ヘッダーセクション -->
-        <h1 class="site-title"><!-- サイトタイトル -->
-            <a href="index.html"> やまた・たもう </a><!-- サイト名 -->
+   
+     <header id="header">
+        <h1 class="site-title">
+            <a href="index.html"> やまた・たもう </a>
         </h1>
         <nav>
             <ul>
@@ -62,15 +62,15 @@
                     href="https://x.com/Tamou_yamata" 
                     target="_blank"
 
-                    rel="noopener noreferrer"><!-- ターゲットタブ・新しいタブで開くTwitterリンク -->
+                    rel="noopener noreferrer">
                     
                       <img src="assets/images/Sprite-newumbrella0031.png" alt="Twitter" class="icon"/></a>
                 </li>
-            </ul><!-- Twitterリンク -->
+            </ul>
         </nav>
      </header>
 
-     <!--Main-->
+   
      <div id="main">
        <picture>
          <source media="(max-width: 600px;)" srcset="Guitar001.png">
@@ -78,10 +78,10 @@
        </picture>
      </div>
 
-     <!--about-->
+   
           <section id="about" class="wrapper">
-            <h2 class="sec-title"><!-- サイトタイトル -->
-              <a href="#" class="sec-title" class="scroll">About</a><!-- サイト名 -->
+            <h2 class="sec-title">
+              <a href="#" class="sec-title" class="scroll">About</a>
             </h2>
 
 
@@ -106,11 +106,11 @@
      </section>
 
 
-     <!--activity-->
+   
      <section id="works" class="wrapper">
           <section id="about" class="wrapper">
-            <h2 class="sec-title"><!-- サイトタイトル -->
-              <a href="#" class="sec-title" class="scroll">Activity</a><!-- サイト名 -->
+            <h2 class="sec-title">
+              <a href="#" class="sec-title" class="scroll">Activity</a>
             </h2>
       <nav>
         <ul>
@@ -124,11 +124,11 @@
        </nav>
      </section>
 
-     <!--news-->
+    
      <section id="news" class="wrapper">
           <section id="about" class="wrapper">
-            <h2 class="sec-title"><!-- サイトタイトル -->
-              <a href="#" class="sec-title" class="scroll">News</a><!-- サイト名 -->
+            <h2 class="sec-title">
+              <a href="#" class="sec-title" class="scroll">News</a>
             </h2>
 
             <dl>
@@ -145,11 +145,11 @@
             </dl>
      </section>
 
-     <!--contact-->
+    
      <section id="contact" class="wrapper">
           <section id="about" class="wrapper">
-            <h2 class="sec-title"><!-- サイトタイトル -->
-              <a href="#" class="sec-title" class="scroll">Contact</a><!-- サイト名 -->
+            <h2 class="sec-title">
+              <a href="#" class="sec-title" class="scroll">Contact</a>
             </h2>
 
           <p>お問い合わせは以下のフォームから</p>
@@ -186,6 +186,7 @@
   </body>
 
 </html>
+
 
 
 
