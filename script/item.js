@@ -26,7 +26,7 @@ document.addEventListener('dragstart', function (event) {
 document.addEventListener("DOMContentLoaded", () => {
   const spaceContainer = document.getElementById("space-container");
 
-  const totalCubes = 5; // 🔢 ← 好きな個数に変更可能
+  const totalCubes = 5; 
 
   for (let i = 0; i < totalCubes; i++) {
     createInteractiveCube(i);
@@ -96,3 +96,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
