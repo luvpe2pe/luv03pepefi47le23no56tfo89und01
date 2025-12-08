@@ -36,20 +36,20 @@ h1 {
   text-shadow: 0 0 5px rgba(255, 255, 255, 0), 0
 }
 .ascii-scroll {
-    overflow-x: auto;/* 横スクロールを許可 */
-    white-space: nowrap;/* 折り返しを防止 */
-    font-family: monospace;/* 等幅フォントで表示 */
+    overflow-x: auto;
+    white-space: nowrap;
+    font-family: monospace;
     background: #ffffff00;
     padding: 1em;
 }
 
 .hide-scrollbar {
-  overflow: auto;/* スクロールは有効 */
-  scrollbar-width: none;/* Firefox用 */
-  -ms-overflow-style: none;/* IE/Edge用 */
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;/* Chrome/Safari用 */
+  display: none;
 }
 
 .scroll-container {
@@ -92,4 +92,5 @@ h1 {
   100% {
     transform: translate(-50%, -50%) rotateY(360deg) rotateX(360deg);
   }
+
 }
