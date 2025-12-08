@@ -52,8 +52,10 @@
       margin-right: 25px;
       flex-shrink: 0;
       overflow: hidden;
+          overflow-y: auto;       
+  　　　　　overflow-x: hidden;      
       border: 1px solid #333;
-      border-radius: 8px;/* 角丸 */
+      border-radius: 8px;
       background-color: rgba(255, 255, 255, 0.85);
       box-sizing: content-box;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -274,6 +276,7 @@
     flex-direction: column;
   }
 }
+
 
 
 
