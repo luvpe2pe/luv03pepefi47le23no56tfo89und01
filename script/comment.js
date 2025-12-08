@@ -1,5 +1,5 @@
-// ✅ 変更点1：ユーザー名ごとの固定IDを保持するマップを追加
-const userIdMap = {}; // { "ユーザー名": "comment-1" }
+
+const userIdMap = {}; 
 let nextIdNumber = 1;
 
 document.getElementById("comment-form").addEventListener("submit", function (e) {
@@ -10,7 +10,7 @@ document.getElementById("comment-form").addEventListener("submit", function (e) 
 
   if (username === "" || message === "") return;
 
-  // ✅ 変更点2：ユーザー名が未登録ならIDを割り振る（固定する）
+  
   if (!userIdMap[username]) {
     const newId = `comment-${nextIdNumber}`;
     userIdMap[username] = newId;
@@ -20,7 +20,7 @@ document.getElementById("comment-form").addEventListener("submit", function (e) 
   const commentId = userIdMap[username];
   const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  // ✅ 変更点3：コメントブロックを生成（既存のIDを使用）
+  
   const commentDiv = document.createElement("div");
   commentDiv.className = "comment";
 
@@ -32,9 +32,9 @@ document.getElementById("comment-form").addEventListener("submit", function (e) 
   `;
 
 
-// ✅ 変更点4：追加コード**「固定IDをクリックすると、そのIDに紐づく過去のコメントだけを表示する」**
+
   document.getElementById("comment-container").appendChild(commentDiv);
-  // ✅ 新しいコメントが常に見えるようにスクロール
+ 
   document.getElementById("comment-container").scrollTop = document.getElementById("comment-container").scrollHeight;
   document.getElementById("comment-form").reset();
 });
@@ -42,12 +42,12 @@ document.getElementById("comment-form").addEventListener("submit", function (e) 
 document.getElementById("comment-container").addEventListener("click", function (e) {
   const target = e.target;
 
-  // 固定IDの要素がクリックされたかどうかを判定
+
   if (target.classList.contains("comment-id")) {
     const clickedId = target.textContent.replace("💬 固定ID: ", "").trim();
     const allComments = document.querySelectorAll(".comment");
 
-    // トグル機能：すでにフィルタされている場合は全表示に戻す
+    
     const isFiltered = target.classList.contains("active-filter");
 
     allComments.forEach(comment => {
@@ -61,7 +61,7 @@ document.getElementById("comment-container").addEventListener("click", function 
       }
     });
 
-    // フィルタ状態の切り替え
+    
     document.querySelectorAll(".comment-id").forEach(span => span.classList.remove("active-filter"));
     if (!isFiltered) {
       target.classList.add("active-filter");
@@ -71,7 +71,7 @@ document.getElementById("comment-container").addEventListener("click", function 
 
 
 
-// ✅ 変更点5：ドラッグで移動できるようにする
+
 const box = document.getElementById("comment-box");
 let isDragging = false;
 let offsetX, offsetY;
@@ -93,9 +93,10 @@ document.addEventListener("mouseup", () => {
   isDragging = false;
 });
 
-// ✅ 変更点 6：コメント削除を追加
+
 const deleteBtn = document.createElement("button");
 deleteBtn.textContent = "削除";
 deleteBtn.className = "delete-button";
 deleteBtn.onclick = () => commentDiv.remove();
+
 commentDiv.appendChild(deleteBtn);
