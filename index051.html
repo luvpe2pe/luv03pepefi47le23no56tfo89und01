@@ -24,10 +24,10 @@
             background-size: cover;
             background-position: center top;
             background-repeat: no-repeat;
-            user-select: text;/* テキスト選択を禁止 */
+            user-select: text;
         }
         img {
-            -webkit-user-drag: none; /* 画像のドラッグを禁止 */
+            -webkit-user-drag: none; 
         }
 
         header {
@@ -47,10 +47,10 @@
             color: #4CAF50;
         }
         main {
-            padding: 180px; /* 余白 */
-            position: none; /* 要素を固定 */
-            width: 0.15%; /* 要素の幅を指定 */
-            height: 50%; /* 要素の高さを指定 */
+            padding: 180px;
+            position: none;
+            width: 0.15%;
+            height: 50%;
         }
         footer {
             margin-top: 30px;
@@ -75,7 +75,7 @@
         });
     </script>
      <script>
-        /* 右クリックメニューを無効にするスクリプト */
+      
         document.addEventListener('contextmenu', function(event) {
             if (event.target.tagName === 'IMG') {
                 event.preventDefault();
@@ -83,7 +83,7 @@
             }
         });
 
-        /* ドラッグを禁止するスクリプト */
+      
         document.addEventListener('dragstart', function(event) {
             if (event.target.tagName === 'IMG') {
                 event.preventDefault();
@@ -122,5 +122,6 @@
 
 </body>
 </html>
+
 
 
